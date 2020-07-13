@@ -1,0 +1,2 @@
+GET HTTP://LOCALHOST:7777/view/cart
+Authorization: token

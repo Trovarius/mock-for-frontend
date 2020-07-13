@@ -1,0 +1,21 @@
+
+  [{
+    "httpRequest": {
+      "method": "GET",
+      "path": "/view/cart",
+      "headers": {
+            "Authorization": ["token"]
+        }
+    },
+    "httpResponse": {
+      "body": "some_response_body"
+    }
+  },{
+    "httpRequest": {
+      "method": "POST",
+      "path": "/view/cart"
+    },
+    "httpResponse": {
+      "body": "some_response_body"
+    }
+  }]
