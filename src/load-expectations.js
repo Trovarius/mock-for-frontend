@@ -1,7 +1,7 @@
 const mockServerClient = require("mockserver-client").mockServerClient;
 const recursive = require("recursive-readdir");
 const fs = require("fs");
-const { rejects } = require("assert");
+const { PORT, expectationFolder } = require("./config");
 
 async function readFile(path) {
   return new Promise((resolve, reject) => {
@@ -18,7 +18,7 @@ async function readFile(path) {
 }
 
 async function loadExpectation() {
-  recursive("./expectations", async function (err, files) {
+  recursive(expectationFolder, async function (err, files) {
     // `files` is an array of file paths\
     let expectations = [];
     for (const key of files) {
@@ -43,36 +43,10 @@ async function loadExpectation() {
     });
 
     for (const expectation of expectations) {
-      await mockServerClient("localhost", 7777).mockAnyResponse(expectation);
+      await mockServerClient("localhost", PORT).mockAnyResponse(expectation);
       console.log(`${expectation.httpRequest.path}`);
     }
   });
 }
 
-async function fallBack() {
-  mockServerClient("localhost", 7777)
-    .mockAnyResponse({
-      httpRequest: {
-        path: "/.*",
-      },
-      httpForward: {
-        // QA environment load balancer
-        host: "randomuser.me",
-        port: 443,
-        scheme: "HTTPS",
-      },
-      times: {
-        unlimited: true,
-      },
-    })
-    .then(
-      function () {
-        console.log(`FALLBACK`);
-      },
-      function (error) {
-        console.log(error);
-      }
-    );
-}
-
-module.exports = { loadExpectation, fallBack };
+module.exports = { loadExpectation };

@@ -1,5 +1,7 @@
-var mockServerClient = require("mockserver-client").mockServerClient;
-mockServerClient("localhost", 7777)
+const mockServerClient = require("mockserver-client").mockServerClient;
+const { PORT } = require("./config");
+
+mockServerClient("localhost", PORT)
   .retrieveRecordedExpectations({})
   .then(
     function (recordedExpectations) {

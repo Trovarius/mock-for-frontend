@@ -1,14 +1,15 @@
-var mockserver = require("mockserver-node");
+const mockserver = require("mockserver-node");
+const { PORT } = require("./config");
 
 const start = async () => {
   mockserver
     .start_mockserver({
-      serverPort: 7777,
+      serverPort: PORT,
       trace: true,
     })
     .then(async () => {
       console.log("Mock server started");
-      const { loadExpectation, fallBack } = require("./load-expectations");
+      const { loadExpectation } = require("./load-expectations");
       await loadExpectation();
     });
 };
@@ -16,11 +17,11 @@ const start = async () => {
 // do something
 const stop = () => {
   mockserver.stop_mockserver({
-    serverPort: 7777,
+    serverPort: PORT,
   });
 };
 
-start();
-//   start,
-//   stop,
-// };
+module.exports = {
+  start,
+  stop,
+};
