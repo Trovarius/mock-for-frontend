@@ -9,4 +9,4 @@ POST HTTP://LOCALHOST:7777/pets/1
 
 
 ###
-POST HTTP://LOCALHOST:7777/mockserver/logs
+POST HTTP://LOCALHOST:7777/mockserver/healthcheck

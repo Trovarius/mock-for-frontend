@@ -15,6 +15,8 @@ $ npm i -g mock-ff
 $ mock-ff ./expectations/
 ```
 
+**PS:** Make sure you have the right permissions to read/write in the folder you are executing the command or mock-ff will fail.
+
 This command will start your mockserver on port `7777`
 
 # HeathCheck
@@ -25,6 +27,5 @@ curl --request POST --url http://localhost:7777/mockserver/healthcheck
 
 # Dependencies
 
-"mockserver-client": "^5.11.0",
-"mockserver-node": "^5.11.0",
+* JDK 11+
 
