@@ -1,6 +1,6 @@
 {
   "name": "mock-ff",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This package aim to help the frontend development by providing a wrapper over [mockserver](https://www.mock-server.com/) package.",
   "main": "./src/server.js",
   "bin": {
@@ -12,8 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mockserver-client": "^5.11.0",
-    "mockserver-node": "^5.11.0",
+    "mockserver-client": "^5.11.1",
+    "mockserver-node": "^5.11.1",
     "recursive-readdir": "^2.2.2"
   },
   "directories": {

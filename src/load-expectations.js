@@ -28,7 +28,6 @@ module.exports = async function loadExpectation(source, mockServerClient) {
 
     for (const key of files) {
       const jsonFile = await readFile(key);
-
       expectations = [...expectations, ...jsonFile];
     }
 
