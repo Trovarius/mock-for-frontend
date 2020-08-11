@@ -1,5 +1,5 @@
 {
-  "name": "@trovarius/mock-ff",
+  "name": "mock-ff",
   "version": "1.0.0",
   "description": "This package aim to help the frontend development by providing a wrapper over [mockserver](https://www.mock-server.com/) package.",
   "main": "./src/server.js",

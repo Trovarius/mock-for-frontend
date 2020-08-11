@@ -19,7 +19,7 @@ $ mock-ff ./expectations/
 
 This command will start your mockserver on port `7777`
 
-# HeathCheck
+# HealthCheck
 
 ```sh
 curl --request POST --url http://localhost:7777/mockserver/healthcheck
