@@ -6,6 +6,22 @@ This package aim to help the frontend development by providing a wrapper over [m
 
 You just gonna need to create a new folder to store your expectations, for more info in how to create expectations you can find [here](https://www.mock-server.com/mock_server/creating_expectations.html) and [here](https://github.com/mock-server/mockserver-client-node/tree/master/examples)
 
+### Sample
+
+```json
+// ./expectations/login.json
+[
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/login"
+    },
+    "httpResponse": {
+      "body": "token"
+    }
+  }
+]
+```
 
 # How to use
 
