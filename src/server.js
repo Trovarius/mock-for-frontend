@@ -1,7 +1,11 @@
 const mockserver = require("mockserver-node");
+const mockServerClient = require("mockserver-client").mockServerClient;
+const loadExpectation = require("./load-expectations");
+const executedExpectations = require("./recorded");
+
 const { PORT } = require("./config");
 
-const start = async () => {
+const start = async (expectationsFolder) => {
   mockserver
     .start_mockserver({
       serverPort: PORT,
@@ -9,8 +13,10 @@ const start = async () => {
     })
     .then(async () => {
       console.log("Mock server started");
-      const { loadExpectation } = require("./load-expectations");
-      await loadExpectation();
+      const mockClient = mockServerClient("localhost", PORT);
+
+      await loadExpectation(expectationsFolder, mockClient);
+      await executedExpectations(mockClient);
     });
 };
 
@@ -21,7 +27,4 @@ const stop = () => {
   });
 };
 
-module.exports = {
-  start,
-  stop,
-};
+module.exports = { start, stop };
