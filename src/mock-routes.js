@@ -1,4 +1,4 @@
-module.exports = async function executedExpectations(mockServerClient) {
+async function executedExpectations(mockServerClient) {
   var callback = async function () {
     const executed = await mockServerClient.retrieveRecordedExpectations({});
     console.log(executed);
@@ -23,4 +23,21 @@ module.exports = async function executedExpectations(mockServerClient) {
         console.log(error);
       }
     );
+}
+
+async function healthCheck(mockServerClient) {
+  await mockServerClient.mockAnyResponse({
+    httpRequest: {
+      path: "/mockserver/healthcheck",
+    },
+    httpResponse: {
+      statusCode: 200,
+      body: "Everything is working in mock server.",
+    },
+  });
+}
+
+module.exports = {
+  executedExpectations,
+  healthCheck,
 };

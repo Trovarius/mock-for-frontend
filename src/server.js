@@ -1,7 +1,7 @@
 const mockserver = require("mockserver-node");
 const mockServerClient = require("mockserver-client").mockServerClient;
 const loadExpectation = require("./load-expectations");
-const executedExpectations = require("./recorded");
+const { executedExpectations, healthCheck } = require("./mock-routes");
 
 const { PORT } = require("./config");
 
@@ -17,6 +17,7 @@ const start = async (expectationsFolder) => {
 
       await loadExpectation(expectationsFolder, mockClient);
       await executedExpectations(mockClient);
+      await healthCheck(mockClient);
     });
 };
 
