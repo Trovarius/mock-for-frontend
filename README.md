@@ -23,6 +23,34 @@ You just gonna need to create a new folder to store your expectations, for more 
 ]
 ```
 
+Or
+
+```js
+// ./expectations/js-sample.js
+module.exports = (mockClient) => {
+  mockClient
+    .mockAnyResponse({
+      httpRequest: {
+        method: "GET",
+        path: "/jssample",
+      },
+      httpResponse: {
+        body: "EXPECTATION LOAD FROM JS FILE",
+      },
+    })
+    .then(
+      function () {
+        console.log("expectation created");
+      },
+      function (error) {
+        console.log(error);
+      }
+    );
+};
+```
+
+> PS: The mock server load JSON expectation before JS expectations
+
 # How to use
 
 Execute the following command 

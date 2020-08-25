@@ -23,8 +23,6 @@ const start = async (expectationsFolder) => {
       await loadJSExpectation(expectationsFolder, mockClient);
       await executedExpectations(mockClient);
       await healthCheck(mockClient);
-
-      console.log("READY!!");
     })
     .catch((err) => console.error(err));
 };
@@ -35,8 +33,6 @@ const stop = () => {
     serverPort: PORT,
   });
 };
-
-console.log(process.env.NODE_ENV);
 
 if (process.env.NODE_ENV) {
   start();

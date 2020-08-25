@@ -1,7 +1,6 @@
 const recursive = require("recursive-readdir");
 const fs = require("fs");
 const path = require("path");
-const { mockServerClient } = require("mockserver-client");
 
 async function readFile(path) {
   return new Promise((resolve, reject) => {
