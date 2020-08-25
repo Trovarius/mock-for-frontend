@@ -1,5 +1,7 @@
 const recursive = require("recursive-readdir");
 const fs = require("fs");
+const path = require("path");
+const { mockServerClient } = require("mockserver-client");
 
 async function readFile(path) {
   return new Promise((resolve, reject) => {
@@ -16,8 +18,8 @@ async function readFile(path) {
   });
 }
 
-module.exports = async function loadExpectation(source, mockServerClient) {
-  recursive(source || "./expectations", async function (err, files) {
+function loadJsonExpectation(source, mockServerClient) {
+  recursive(source || "./expectations", ["*.js"], async function (err, files) {
     // `files` is an array of file paths\
     let expectations = [];
 
@@ -36,4 +38,27 @@ module.exports = async function loadExpectation(source, mockServerClient) {
       console.log(`${expectation.httpRequest.path}`);
     }
   });
+}
+
+function loadJSExpectation(source, mockServerClient) {
+  recursive(source || "./expectations", ["*.json"], async function (
+    err,
+    files
+  ) {
+    if (err) {
+      console.log(`Read dir error (${source || "./expectations"}): ${err}`);
+      throw new Error(err);
+    }
+
+    for (const key of files) {
+      console.log(path.resolve(key));
+      const expectation = require(path.resolve(key));
+      expectation(mockServerClient);
+    }
+  });
+}
+
+module.exports = {
+  loadJsonExpectation,
+  loadJSExpectation,
 };

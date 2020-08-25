@@ -1,6 +1,9 @@
 const mockserver = require("mockserver-node");
 const mockServerClient = require("mockserver-client").mockServerClient;
-const loadExpectation = require("./load-expectations");
+const {
+  loadJsonExpectation,
+  loadJSExpectation,
+} = require("./load-expectations");
 const { executedExpectations, healthCheck } = require("./mock-routes");
 
 const { PORT } = require("./config");
@@ -10,15 +13,20 @@ const start = async (expectationsFolder) => {
     .start_mockserver({
       serverPort: PORT,
       trace: true,
+      jvmOptions: "-Dmockserver.enableCORSForAllResponses=true",
     })
     .then(async () => {
       console.log("Mock server started");
       const mockClient = mockServerClient("localhost", PORT);
 
-      await loadExpectation(expectationsFolder, mockClient);
+      await loadJsonExpectation(expectationsFolder, mockClient);
+      await loadJSExpectation(expectationsFolder, mockClient);
       await executedExpectations(mockClient);
       await healthCheck(mockClient);
-    });
+
+      console.log("READY!!");
+    })
+    .catch((err) => console.error(err));
 };
 
 // do something
@@ -28,4 +36,10 @@ const stop = () => {
   });
 };
 
-module.exports = { start, stop };
+console.log(process.env.NODE_ENV);
+
+if (process.env.NODE_ENV) {
+  start();
+} else {
+  module.exports = { start, stop };
+}
