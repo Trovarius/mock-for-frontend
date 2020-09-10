@@ -2,6 +2,15 @@ const recursive = require("recursive-readdir");
 const fs = require("fs");
 const path = require("path");
 
+function IsJsonString(str) {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
+}
+
 async function readFile(path) {
   return new Promise((resolve, reject) => {
     // console.log(path);

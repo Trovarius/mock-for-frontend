@@ -63,10 +63,16 @@ $ mock-ff ./expectations/
 
 This command will start your mockserver on port `7777`
 
-# HealthCheck
+# Useful requests
 
+### Healthcheck
 ```sh
 curl --request POST --url http://localhost:7777/mockserver/healthcheck
+```
+
+### Recorded Requests and Responses
+```sh
+curl --request PUT --url 'http://localhost:7777/mockserver/retrieve?type=REQUEST_RESPONSES'
 ```
 
 # Dependencies

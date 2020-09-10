@@ -5,10 +5,19 @@ Authorization: token
 GET HTTP://LOCALHOST:7777/pet/findByStatus?status=available
 
 ###
-GET HTTP://LOCALHOST:7777/pets/1
+GET HTTP://LOCALHOST:7777/LOCALHOST:7777/pet/teste
 
 ###
 POST HTTP://LOCALHOST:7777/mockserver/healthcheck
 
 ###
-GET HTTP://LOCALHOST:7777/THUNDER
+GET HTTP://LOCALHOST:7777/json
+
+###
+PUT http://localhost:7777/mockserver/retrieve?type=REQUESTS
+
+###
+PUT http://localhost:7777/mockserver/retrieve?type=RECORDED_EXPECTATIONS
+
+###
+PUT http://localhost:7777/mockserver/retrieve?type=REQUEST_RESPONSES
