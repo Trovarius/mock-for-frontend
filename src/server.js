@@ -4,7 +4,7 @@ const {
   loadJsonExpectation,
   loadJSExpectation,
 } = require("./load-expectations");
-const { executedExpectations, healthCheck } = require("./mock-routes");
+const { healthCheck } = require("./mock-routes");
 
 const { PORT } = require("./config");
 
@@ -21,7 +21,6 @@ const start = async (expectationsFolder) => {
 
       await loadJsonExpectation(expectationsFolder, mockClient);
       await loadJSExpectation(expectationsFolder, mockClient);
-      await executedExpectations(mockClient);
       await healthCheck(mockClient);
     })
     .catch((err) => console.error(err));
