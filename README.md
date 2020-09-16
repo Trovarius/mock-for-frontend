@@ -56,8 +56,11 @@ module.exports = (mockClient) => {
 Execute the following command 
 ```sh
 $ npm i -g mock-ff
-$ mock-ff ./expectations/
+$ mock-ff help
+$ mock-ff start ./expectations/ -p 7777
+$ [optional] mock-ff stop -p 7777
 ```
+
 
 **PS:** Make sure you have the right permissions to read/write in the folder you are executing the command or mock-ff will fail.
 
