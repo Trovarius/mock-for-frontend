@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const { start, stop } = require("../src/server");
+const { startServer, stopServer } = require("../server");
 
 const argv = require("yargs")
   .command(
@@ -7,7 +7,7 @@ const argv = require("yargs")
     "stop mock server",
     () => {},
     (argv) => {
-      stop(argv.port);
+      stopServer(argv.port);
     }
   )
   .command(
@@ -20,7 +20,7 @@ const argv = require("yargs")
       });
     },
     (argv) => {
-      start({ expectationsFolder: argv.folder, port: argv.port });
+      startServer(argv.folder, argv.port );
     }
   )
   .option("port", {
@@ -31,5 +31,5 @@ const argv = require("yargs")
   }).argv;
 
 process.on("SIGTERM", () => {
-  stop(argv.port);
+  stopServer(argv.port);
 });

@@ -106,3 +106,6 @@ dist
 #Mock server
 *.pem
 expectations/
+
+#Typescript
+build/

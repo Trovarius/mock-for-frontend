@@ -1,14 +1,15 @@
 {
   "name": "mock-ff",
-  "version": "2.0.0",
-  "description": "This package aim to help the frontend development by providing a wrapper over [mockserver](https://www.mock-server.com/) package.",
-  "main": "./src/server.js",
+  "version": "2.0.1",
+  "description": "This package 1 1aim to help the frontend development by providing a wrapper over [mockserver](https://www.mock-server.com/) package.",
+  "main": "./build/server.js",
   "bin": {
-    "mock-ff": "bin/index.js"
+    "mock-ff": "build/bin/index.js"
   },
   "scripts": {
-    "start": "node bin/index.js",
-    "dev": "set NODE_ENV=\"dev\" && node ./src/server.js"
+    "dev": "set NODE_ENV=dev && ts-node src/server.ts",
+    "build": "rimraf ./build && tsc",
+    "start": "node bin/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +22,12 @@
   "directories": {
     "test": "test"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/node": "^14.11.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Trovarius/mock-for-frontend.git"
