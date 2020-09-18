@@ -5,19 +5,28 @@ Authorization: token
 GET HTTP://LOCALHOST:7777/pet/findByStatus?status=available
 
 ###
-GET HTTP://LOCALHOST:7777/LOCALHOST:7777/pet/teste
+GET HTTP://LOCALHOST:7777/json
 
 ###
 POST HTTP://LOCALHOST:7777/mockserver/healthcheck
 
 ###
-GET HTTP://LOCALHOST:7777/json
+GET HTTP://LOCALHOST:7777/json/qs?status=available
+
+### Open api
+GET HTTP://LOCALHOST:7777/v1/pets/showPetById
+
+###
+PUT http://localhost:7777/mockserver/retrieve?type=EXPECTATIONS
 
 ###
 PUT http://localhost:7777/mockserver/retrieve?type=REQUESTS
 
 ###
 PUT http://localhost:7777/mockserver/retrieve?type=RECORDED_EXPECTATIONS
+
+###
+PUT http://localhost:7777/mockserver/retrieve?type=ACTIVE_EXPECTATIONS
 
 ###
 PUT http://localhost:7777/mockserver/retrieve?type=REQUEST_RESPONSES

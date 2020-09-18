@@ -1,6 +1,6 @@
 {
   "name": "mock-ff",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "This package 1 1aim to help the frontend development by providing a wrapper over [mockserver](https://www.mock-server.com/) package.",
   "main": "./build/server.js",
   "bin": {
