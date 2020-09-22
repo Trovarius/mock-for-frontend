@@ -2,7 +2,6 @@ import recursive from "recursive-readdir";
 import fs from "fs";
 import path, { resolve } from "path";
 import { MockServerClient } from "mockserver-client/mockServerClient";
-import { rejects } from "assert";
 
 interface HttpRequest {
   path: string;
@@ -16,7 +15,7 @@ interface Expectation {
 async function recursiveDir(path: string, format: string): Promise<string[]> {
   return new Promise((resolve, reject) => {
     recursive(path, [format], async function (err, files) {
-      if (err) return rejects(err);
+      if (err) return reject(err);
 
       resolve(files);
     });
